@@ -3,7 +3,7 @@ n=int(input("Enter number of students:"))
 for i in range(n):
  name=input("Enter name:")
  roll_no=input("Eneter roll_no:")
- marks=input("marks:")
+
  physics=int(input("Eneter marks:"))
  chemistry=int(input("Enter marks:"))
  maths=int(input("Enetr marks:"))
