@@ -18,6 +18,6 @@ for i in range(n):
      print("Name:",s["name"])
      print("roll_no:",s["roll_no"])
      print("Marks:")
-     print("physics:",s["marks"]["physics"])
+     print("physics:",s["marks"]["physics"]) 
      print("chemistry:",s["marks"]["chemistry"])
      print("Maths:",s["marks"]["maths"])
