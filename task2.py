@@ -2,22 +2,36 @@ students=[]
 def add_student():
     name=input("Enter name:\n")
     roll_no=input("Enter roll_no:")
-    marks=input("Enter Marks:")
+    physics=int(input("Enter Physics marks:"))
+    chemistry=int(input("Enter chemistry marks:"))
+    maths=int(input("Enter maths marks"))
+    marks={"physics":physics,"chemistry":chemistry,"maths":maths}
     students.append({"name":name,"roll_no":roll_no,"marks":marks})
     print("student added")
+    
 def display_all_students():
     if not students:
         print("No students to display")
         return
     print("\n All students")
     for student in students:
-        print("Name:",student['name'],"roll_no:",student['roll_no'],"marks:",student['marks'])
+        print("Name:",student['name'])
+        print("roll_no:",student['roll_no'])
+        print("Marks:")
+        print("Physics:",student['marks']['physics'])
+        print("Chemistry:",student['marks']['chemistry'])
+        print("Maths:",student['marks']['maths'])
               
 def search_by_roll_no(roll_no):
     for student in students:
         if student ["roll_no"]==roll_no:
             print("student found")
-            print("name:",student["name"],"Roll_no:",student["roll_no"],"marks:",student["marks"],"\n")
+            print("Name:",student['name'])
+            print("roll_no:",student['roll_no'])
+            print("Marks:")
+            print("Physics:",student['marks']['physics'])
+            print("Chemistry:",student['marks']['chemistry'])
+            print("Maths:",student['marks']['maths'])
             return
         print("student not found\n")
             
