@@ -18,12 +18,93 @@
         }
     },
     {
-        "name": "1",
-        "roll_no": "divyy",
+        "name": "divyy",
+        "roll_no": "1",
         "marks": {
             "physics": 12,
             "chemistry": 223,
             "maths": 33
+        }
+    },
+    {
+        "name": "hvhv",
+        "roll_no": "4",
+        "marks": {
+            "physics": 9,
+            "chemistry": 87,
+            "maths": 67
+        }
+    },
+    {
+        "name": "jhfd",
+        "roll_no": "3",
+        "marks": {
+            "physics": 12,
+            "chemistry": 33,
+            "maths": 44
+        }
+    },
+    {
+        "name": "jhvjhv",
+        "roll_no": "5",
+        "marks": {
+            "physics": 34,
+            "chemistry": 55,
+            "maths": 66
+        }
+    },
+    {
+        "name": "jtirj",
+        "roll_no": "6",
+        "marks": {
+            "physics": 34,
+            "chemistry": 54,
+            "maths": 33
+        }
+    },
+    {
+        "name": "uyrey",
+        "roll_no": "7",
+        "marks": {
+            "physics": 98,
+            "chemistry": 69,
+            "maths": 23
+        }
+    },
+    {
+        "name": "JDFJ",
+        "roll_no": "8",
+        "marks": {
+            "physics": 65,
+            "chemistry": 87,
+            "maths": 9
+        }
+    },
+    {
+        "name": "hfh",
+        "roll_no": "9",
+        "marks": {
+            "physics": 33,
+            "chemistry": 66,
+            "maths": 78
+        }
+    },
+    {
+        "name": "hfyf",
+        "roll_no": "10",
+        "marks": {
+            "physics": 98,
+            "chemistry": 90,
+            "maths": 89
+        }
+    },
+    {
+        "name": "wetre",
+        "roll_no": "11",
+        "marks": {
+            "physics": 12,
+            "chemistry": 44,
+            "maths": 55
         }
     }
 ]
