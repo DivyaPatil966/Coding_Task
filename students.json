@@ -16,5 +16,14 @@
             "chemistry": 66,
             "maths": 55
         }
+    },
+    {
+        "name": "1",
+        "roll_no": "divyy",
+        "marks": {
+            "physics": 12,
+            "chemistry": 223,
+            "maths": 33
+        }
     }
 ]
