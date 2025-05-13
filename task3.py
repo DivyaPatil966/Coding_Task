@@ -71,9 +71,10 @@ def display_all_students():
                
 def search_by_rollno(roll_no):
     students_data=read_data()
-    for s in students_data:
-        if s['roll_no'] == roll_no:
-            student = Student(s['name'], s['roll_no'], s['marks']) 
+    student_by_rollno={student['roll_no']:student for student in students_data}
+    student_data=student_by_rollno.get(roll_no)
+    if student_data:    
+            student = Student(student_data['name'], student_data['roll_no'], student_data['marks']) 
             print("student found")
             print("Name:",student.name)
             print("roll_no:",student.roll_no)
