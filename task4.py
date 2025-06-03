@@ -6,7 +6,7 @@ def read_data():
             students=json.load(file)
             return students
     except FileNotFoundError:
-        return[]
+        return []
           
 def write_data(students):
     with open("students.json","w") as file:
@@ -21,8 +21,15 @@ class Student:
     def average(self):
         if self.marks:
             return sum(int(mark) for mark in self.marks.values()) / len(self.marks)
-    
-students=[]
+    def display(self):
+        print("Name: {}".format(self.name))
+        print("Roll No: {}".format(self.roll_no))
+        print("Marks:")
+        for subject, mark in self.marks.items():
+            print("  {}: {}".format(subject.capitalize(), mark))
+        print("Average: {:.2f}\n".format(self.average()))
+
+
 def add_student():
     students = read_data()    
     roll_no = [student["roll_no"] for student in students]
@@ -60,37 +67,41 @@ def display_all_students():
         return
     print("\n All students")
     for s in students_data:
-        student = Student(s['name'], s['roll_no'], s['marks']) 
-        print("Name:",student.name)
-        print("roll_no:",student.roll_no)
-        print("Marks:")
-        print("Physics:",student.marks['physics'])
-        print("Chemistry:",student.marks['chemistry'])
-        print("Maths:",student.marks['maths'])
-        print("average Marks:",student.average()) 
+        student = Student(s["name"], s["roll_no"], s["marks"])
+        student.display()
+        
+        
+def find_topper():
+    students_data = read_data()
+    if not students_data:
+        print("No students available.")
+        return
+
+    # Convert JSON to Student objects
+    student_objects = [Student(s["name"], s["roll_no"], s["marks"]) for s in students_data]
+    topper = max(student_objects, key=lambda s: s.average())
+
+    print("\nTopper:")
+    topper.display()    
                
 def search_by_rollno(roll_no):
     students_data=read_data()
-    student_by_rollno={student['roll_no']:student for student in students_data}
-    student_data=student_by_rollno.get(roll_no)
-    if student_data:    
-        student = Student(student_data['name'], student_data['roll_no'], student_data['marks']) 
+    student_dict = {s["roll_no"]: s for s in students_data}
+    s = student_dict.get(roll_no)
+    if s:    
+        student = Student(s['name'], s['roll_no'], s['marks']) 
         print("student found")
-        print("Name:",student.name)
-        print("roll_no:",student.roll_no)
-        print("Marks:")
-        print("Physics:",student.marks['physics'])
-        print("Chemistry:",student.marks['chemistry'])
-        print("Maths:",student.marks['maths'])
-        return
-    print("student not found\n")
+        student.display()
+    else:
+        print("student not found\n")
 
 def main():
     while True:
         print("Menu:\n")
         print("1. add_students()\n")
         print("2. display all students:\n")
-        print("3. Search by roll no:\n")
+        print("3. Find_Topper:\n")
+        print("4. Search by roll no:\n")
         print("4. Exit\n")
         choice=input("Enter your Choice:")
         if choice =='1':
@@ -98,6 +109,8 @@ def main():
         elif choice =='2':
             display_all_students()
         elif choice =='3':
+            find_topper()
+        elif choice =='4':
             roll_no=input("enter roll_no to search:")
             search_by_rollno(roll_no)
         elif choice =='4':
@@ -108,11 +121,7 @@ def main():
             
 if __name__=="__main__":
     main()          
-    
-
-
-          
-          
+             
 
 
 
