@@ -106,5 +106,14 @@
             "chemistry": 44,
             "maths": 55
         }
+    },
+    {
+        "name": "hddghd",
+        "roll_no": "12",
+        "marks": {
+            "physics": 877,
+            "chemistry": 90,
+            "maths": 78
+        }
     }
 ]
