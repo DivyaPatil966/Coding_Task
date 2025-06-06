@@ -49,12 +49,18 @@ class Student:
     @classmethod
     def from_dict(cls,data):
         return cls(data['name'],data['roll_no'],data['marks'])
-        
+    
+def roll_no_validation():
+    roll_number = input("Enter roll_no:")  
+    if roll_number.isalnum():
+        return roll_number
+    else:
+        return roll_no_validation() 
 
 def add_student():
      # need not create this for every addition
     while True:
-        roll_number = input("Enter roll_no:")    
+        roll_number=roll_no_validation()   
 
         if roll_number in students:
             print("Student with this roll number already exists.")

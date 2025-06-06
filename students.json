@@ -34,5 +34,14 @@
             "chemistry": 56,
             "maths": 78
         }
+    },
+    {
+        "name": "shreya",
+        "roll_no": "5",
+        "marks": {
+            "physics": 78,
+            "chemistry": 78,
+            "maths": 78
+        }
     }
 ]
