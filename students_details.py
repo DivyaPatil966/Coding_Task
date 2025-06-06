@@ -1,19 +1,22 @@
 import json
-
+students={}
 # to handle  all the data from rest file , use a global dict that has roll number as the key and Student Obj as the value.
 
 def read_data():
     # read the rest data and create Student object
+    global students
     try:
         with open ("students.json") as file:
             students=json.load(file)
-            return students
+            students = {student['roll_no']:Student.from_dict(student) for student in students}
     except FileNotFoundError:
-        return[]
+        students = {}
+    except json.JSONDecodeError:
+        students = {}
           
 def write_data(students):
     with open("students.json","w") as file:
-        json.dump(students,file,indent=4)      
+        json.dump([student.to_dict() for student in students.values()],file,indent=4)      #comprehension
 
 class Student:
     def __init__(self,name,roll_no,marks):
@@ -28,15 +31,32 @@ class Student:
     def average(self):
         if self.marks:
             return sum(int(mark) for mark in self.marks.values()) / len(self.marks)
-    
-students=[]
+        
+    def display(self):
+        print("Name: {}".format(self.name))
+        print("Roll No: {}".format(self.roll_no))
+        print("Marks:")
+        for subject, mark in self.marks.items():
+            print("  {}: {}".format(subject.capitalize(), mark))
+        print("Average: {:.2f}\n".format(self.average()))
+        
+        
+    def to_dict(self):
+        return {'name':self.name,
+        'roll_no':self.roll_no,
+        'marks':self.marks
+        }
+    @classmethod
+    def from_dict(cls,data):
+        return cls(data['name'],data['roll_no'],data['marks'])
+        
+
 def add_student():
-    students = read_data()    # should not read rest data for every addition
-    roll_no = [student["roll_no"] for student in students] # need not create this for every addition
+     # need not create this for every addition
     while True:
         roll_number = input("Enter roll_no:")    
 
-        if roll_number in roll_no:
+        if roll_number in students:
             print("Student with this roll number already exists.")
         else:
             break
@@ -48,52 +68,33 @@ def add_student():
     except ValueError:
         print("Invalid input. Marks should be integers")
         return
-    students.append({ # this should be an object
-        'name':name,
-        'roll_no':roll_number,
-        'marks':{
-            'physics':physics,
-            'chemistry':chemistry,
-            'maths':maths
-        }
-    }) 
+    marks={'physics':physics,
+           'chemistry':chemistry,
+           'maths':maths}
+    student=Student(name,roll_number,marks)
+    students[roll_number]=student
     write_data(students)
     print("students added successfully")
 
 def display_all_students(): 
-    students_data=read_data() # better do it at start of the program
-    if not students_data:
+    
+    if not students:
         print("No student to display")
         return
     print("\n All students")
-    for s in students_data:
-        student = Student(s['name'], s['roll_no'], s['marks']) # should not create Student obj every time
-        print("Name:",student.name)
-        print("roll_no:",student.roll_no)
-        print("Marks:")
-        print("Physics:",student.marks['physics'])
-        print("Chemistry:",student.marks['chemistry'])
-        print("Maths:",student.marks['maths'])
-        print("average Marks:",student.average()) 
+    for s in students.values():
+        s.display()
                
 def search_by_rollno(roll_no):
-    # get student by O(1)
-    students_data=read_data() # dont read from rest data every time 
-    student_by_rollno={student['roll_no']:student for student in students_data} # u r looping through all the students so time taken is n
-    student_data=student_by_rollno.get(roll_no)
-    if student_data:    
-        student = Student(student_data['name'], student_data['roll_no'], student_data['marks']) 
+    s = students.get(roll_no)
+    if s:     
         print("student found")
-        print("Name:",student.name)
-        print("roll_no:",student.roll_no)
-        print("Marks:")
-        print("Physics:",student.marks['physics'])
-        print("Chemistry:",student.marks['chemistry'])
-        print("Maths:",student.marks['maths'])
-        return
-    print("student not found\n")
+        s.display()
+    else:
+        print("student not found\n")
 
 def main():
+    read_data()
     while True:
         print("Menu:\n")
         print("1. add_students()\n")
@@ -115,14 +116,4 @@ def main():
             print("Invalid Choice\n")
             
 if __name__=="__main__":
-    main()          
-    
-
-
-          
-          
-
-
-
-    
-        
+    main()               
