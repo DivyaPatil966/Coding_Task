@@ -25,5 +25,14 @@
             "chemistry": 89,
             "maths": 67
         }
+    },
+    {
+        "name": "asha",
+        "roll_no": "4",
+        "marks": {
+            "physics": 89,
+            "chemistry": 56,
+            "maths": 78
+        }
     }
 ]

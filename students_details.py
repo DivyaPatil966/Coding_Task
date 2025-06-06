@@ -84,6 +84,17 @@ def display_all_students():
     print("\n All students")
     for s in students.values():
         s.display()
+        
+def find_topper():
+    if not students:
+        print("No students available.")
+        return
+
+    # Convert JSON to Student objects
+    topper = max(students.values(), key=lambda s: s.average())
+
+    print("\nTopper:")
+    topper.display()
                
 def search_by_rollno(roll_no):
     s = students.get(roll_no)
@@ -99,17 +110,20 @@ def main():
         print("Menu:\n")
         print("1. add_students()\n")
         print("2. display all students:\n")
-        print("3. Search by roll no:\n")
-        print("4. Exit\n")
+        print("3. find_topper\n")
+        print("4. Search by roll no:\n")
+        print("5. Exit\n")
         choice=input("Enter your Choice:")
         if choice =='1':
             add_student()
         elif choice =='2':
             display_all_students()
-        elif choice =='3':
+        elif choice == '3':
+            find_topper()
+        elif choice =='4':
             roll_no=input("enter roll_no to search:")
             search_by_rollno(roll_no)
-        elif choice =='4':
+        elif choice =='5':
             print("Exit")
             break
         else:
